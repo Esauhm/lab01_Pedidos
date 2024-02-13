@@ -6,6 +6,8 @@
 package modelos;
 
 import java.sql.Date;
+import java.sql.SQLException;
+import modelosDAO.ClienteDAO;
 
 /**
  *
@@ -14,6 +16,7 @@ import java.sql.Date;
 public class Pedidos {
     private int ID;
     private int ID_Cliente;
+    private int nombre_cliente;
     private Date Fecha;
     private double Total;
     private String Estado;
@@ -34,6 +37,19 @@ public class Pedidos {
     }
 
     public Pedidos() {
+    }
+
+    public String getNombre_cliente(String id_cliente) throws SQLException {
+        ClienteDAO clt = new ClienteDAO();
+        
+         Clientes clientes = clt.obtenerClienteByID(Integer.parseInt(id_cliente));
+            
+        return clientes.getNombre();
+    }
+
+    
+    public void setNombre_cliente(int id_cliente) {
+        this.nombre_cliente = nombre_cliente;
     }
 
     public int getID() {

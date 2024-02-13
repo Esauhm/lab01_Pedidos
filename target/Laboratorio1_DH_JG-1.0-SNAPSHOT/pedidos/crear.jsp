@@ -32,7 +32,8 @@
             }
 
             input[type="text"],
-            input[type="number"] {
+            input[type="number"],input[type="date"],select
+             {
                 width: 100%;
                 padding: 10px;
                 border: 1px solid #ccc;
@@ -64,9 +65,10 @@
                 <form action="crearPedidos" class="mt-5" method="post">
                     <h1>Crear Pedido</h1>
 
+                    <label for="cliente">Cliente:</label>
                     <select id="cliente" name="cliente">
-                        <c:forEach var="categoria" items="${categorias}">
-                            <option value="${categoria.idCategoria}">${categoria.nombreCategoria}</option>
+                        <c:forEach var="cliente" items="${clientes}">
+                            <option value="${cliente.getID()}">${cliente.getNombre()}</option>
                         </c:forEach>
                     </select>
 
@@ -74,16 +76,16 @@
                     <input type="date" id="fechaPedido" name="fechaPedido" required><br><br>
 
                     <label for="totalPedido">Total:</label>
-                    <input type="number" id="totalPedido" name="totalPedido" required min="0"><br><br>
+                    <input type="number" id="totalPedido" name="totalPedido" required min="0.01" step="0.1"><br><br>
                   
                   
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="estadoPedido">Estados</label>
-                        <select class="form-select" id="estadoPedido">
+                        <select class="form-select" id="estadoPedido" name="estadoPedido">
                           <option selected>Elija un estado</option>
-                          <option value="1">Estado 1</option>
-                          <option value="2">Estado 2</option>
-                          <option value="3">Estado 3</option>
+                          <option value="1">Pendiente</option>
+                          <option value="2">En camino</option>
+                          <option value="3">Entregado</option>
                         </select>
                       </div>
                     

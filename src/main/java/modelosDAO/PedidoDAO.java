@@ -5,6 +5,7 @@
  */
 package modelosDAO;
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import db.cn;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +14,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import modelos.Pedidos;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,19 +37,20 @@ public class PedidoDAO {
     }
     
     
-    public List<Pedidos> consultarPedidos(int idCLiente) throws SQLException{
+   
+    
+    public List<Pedidos> consultarPedidos() throws SQLException{
      List<Pedidos> lstPedidos = new ArrayList<>();
-     String sql = "SELECT * FROM pedidos where id_Cliente = ?";
+     String sql = "SELECT id,id_cliente,fecha,total,estado FROM pedidos ";
      
      ps = CN.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-     ps.setInt(idCLiente, idCLiente);
      
      try (ResultSet rs = ps.executeQuery()){
           while (rs.next()) {
                 Pedidos pedido = new Pedidos();
                 pedido.setID(rs.getInt("id"));
                 pedido.setID_Cliente(rs.getInt("id_cliente"));
-                pedido.setFecha(rs.getDate("fecha").toString());
+                pedido.setFecha(rs.getDate("fecha"));
                 pedido.setTotal(rs.getDouble("total"));
                 pedido.setEstado(rs.getString("estado"));
 
@@ -58,11 +63,10 @@ public class PedidoDAO {
      return lstPedidos;
     }
     
-   
-    
-      public int addPedido(Pedidos pedido) {
+      public boolean addPedido(Pedidos pedido) {
+          
         String sql = "INSERT INTO pedidos (id_cliente, fecha, total,estado) VALUES (?, ?, ?,?)";
-
+      
         try {
             // Indica que deseas obtener el ID generado automáticamente
             ps = CN.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -79,7 +83,7 @@ public class PedidoDAO {
                 ResultSet generatedKeys = ps.getGeneratedKeys();
 
                 if (generatedKeys.next()) {
-                    return generatedKeys.getInt(1);
+                    return true;
                 }
             }
         } catch (SQLException e) {
@@ -89,19 +93,17 @@ public class PedidoDAO {
         }
 
         // se retorna valor negativo por causa error
-        return -1;
+        return false;
     }
       
      public Pedidos obtenerPedidoPorId(int id) {
-        String sql = "SELECT * FROM pedidos WHERE idPedido = ?";
-
-        try  {
-            ps.setInt(1, id);
-            ps = CN.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
+        String sql = "SELECT * FROM pedidos WHERE id = ?";
+             Pedidos pedido = null;
+        try(PreparedStatement ps = CN.getConnection().prepareStatement(sql))  {
+            ps.setInt(1, id);         
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    Pedidos pedido = new Pedidos();
+                     pedido = new Pedidos();
                     pedido.setID(rs.getInt("id"));
                     pedido.setID_Cliente(rs.getInt("id_cliente"));
                     pedido.setFecha(rs.getDate("fecha"));
@@ -118,6 +120,39 @@ public class PedidoDAO {
 
         return null; // Devuelve null si no se encuentra un pedido 
     }
-    
      
+     
+    
+      public boolean updatePedido(Pedidos pedido) {
+        String sql = "update pedidos set id_cliente = ?, fecha = ?, total = ?, estado = ? where id = ?";
+
+        try (PreparedStatement ps = CN.getConnection().prepareStatement(sql)) {
+            ps.setInt(1, pedido.getID_Cliente());
+            ps.setDate(2, pedido.getFecha());
+            ps.setDouble(3, pedido.getTotal());
+            ps.setString(4, pedido.getEstado());
+            ps.setInt(5, pedido.getID());
+
+            int filasAfectadas = ps.executeUpdate();
+
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+      
+      public boolean deletePedido(int id) {
+        String sql = "DELETE FROM pedidos WHERE ID = ?";
+
+        try (PreparedStatement ps = CN.getConnection().prepareStatement(sql)) {
+            ps.setInt(1, id);
+
+            int filasAfectadas = ps.executeUpdate();
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
