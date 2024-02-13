@@ -155,4 +155,31 @@ public class PedidoDAO {
             return false;
         }
     }
+      
+      
+  public List<Pedidos> graficaPedidos(String anio) {
+        ArrayList<Pedidos> lista = new ArrayList<>();
+        String sql = "select month(fecha) as mes,count(ID) as cantidad from pedidos p\n" +
+                        "where year(p.fecha) = ? \n" +
+                        "group by month(fecha)\n" +
+                        "limit 3;";
+
+        try (PreparedStatement ps = CN.getConnection().prepareStatement(sql)) {
+            ps.setString(1, anio);
+           
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Pedidos pedido = new Pedidos();
+                    pedido.setMes(rs.getString("mes"));
+                    pedido.setCantidad(rs.getInt("cantidad"));
+                    lista.add(pedido);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return lista;
+    }
 }

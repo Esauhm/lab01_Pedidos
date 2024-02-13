@@ -20,7 +20,9 @@ public class Pedidos {
     private Date Fecha;
     private double Total;
     private String Estado;
-
+    private String mes;
+    private int cantidad;
+    
     public Pedidos(int ID, int ID_Cliente, Date fecha, double total, String estado) {
         this.ID = ID;
         this.ID_Cliente = ID_Cliente;
@@ -90,5 +92,21 @@ public class Pedidos {
 
     public void setEstado(String estado) {
         Estado = estado;
+    }
+
+    public String getMes() {
+        return mes;
+    }
+
+    public void setMes(String anio) {
+        this.mes = anio;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 }
