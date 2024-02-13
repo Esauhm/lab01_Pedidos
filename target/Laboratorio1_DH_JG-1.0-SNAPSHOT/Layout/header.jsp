@@ -162,8 +162,26 @@
             <li class="nav-item active">    
                 <a class="nav-link" href="/Laboratorio1_DH_JG">Inicio</a>
             </li>
+            <li class="nav-item active">    
+                <a class="nav-link" href="CargarClientes">Clientes</a>
+            </li>
             
+             <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Graficos
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">graf 1</a></li>
+                  <li><a class="dropdown-item" href="#">graf2</a></li>
+                </ul>
+          </li>
+                  
 </nav>
+    
+    
+    
+    
+
 
 
    
