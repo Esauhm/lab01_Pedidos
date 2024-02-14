@@ -358,6 +358,7 @@ public class PedidioController extends HttpServlet {
             if (lstPedidos != null) {
                 // Crear una instancia de Gson
                 Gson gson = new Gson();
+                 request.setAttribute("datos", lstPedidos);
 
                 // Convertir la lista de encuestas a JSON
                 String encuestasJSON = gson.toJson(lstPedidos);
@@ -388,10 +389,12 @@ public class PedidioController extends HttpServlet {
         try {
             // Lógica para obtener los datos del producto desde la base de datos
             List<Pedidos> lstPedidos = pedidoDao.graficaPedidos(anio);
+            
+             
             if (lstPedidos != null) {
                 // Crear una instancia de Gson
                 Gson gson = new Gson();
-
+                 request.setAttribute("datos", lstPedidos);
                 // Convertir la lista de encuestas a JSON
                 String encuestasJSON = gson.toJson(lstPedidos);
 

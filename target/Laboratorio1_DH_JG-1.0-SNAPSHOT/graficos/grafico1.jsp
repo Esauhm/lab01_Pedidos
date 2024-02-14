@@ -5,7 +5,52 @@
 <title>Meses con mayor pedidos</title>
 <%@ include file="/Layout/header.jsp" %>
 
+
 <style>
+    /* Estilo para la tabla de productos */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .container{
+        max-width: 85%;
+    }
+    .table th, .table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .table th {
+        background-color: #f2f2f2;
+    }
+
+    .btn {
+        padding: 5px 10px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
     /* Agregar sombreado al hover de los cards */
     .card:hover {
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Cambia los valores según tus preferencias */
@@ -25,6 +70,7 @@
         padding: 22px;
     }
 </style>
+
      <div class="container card mb-4">
         <div class="card-header justify-content-center d-flex">
             <h2 class="mb-4 mt-5">Meses con mayor pedidos</h2>
@@ -70,8 +116,26 @@
                 </div>
             </div>
         </div>
+       
     </div>
-
+ <div class="container">
+    <table id="miTabla" class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Total de Pedidos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach items="${datos}" var="pedido">
+                <tr>
+                    <td>${pedido.getMes()}</td>
+                    <td>${pedido.getCantidad()}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+ </div>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     
@@ -161,4 +225,5 @@
         });
     </script>
 </body>
+  <%@ include file="/Layout/footer.jsp" %>
 </html>
