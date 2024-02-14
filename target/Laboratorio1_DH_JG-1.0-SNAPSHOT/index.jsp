@@ -11,14 +11,14 @@
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-        <img src="https://www.marketeroslatam.com/wp-content/uploads/2021/08/encuestas-online.jpg" class="d-block w-100" style="width: 400px; height: 600px;" alt="...">
+        <img src="https://arrobasystem.com/cdn/shop/articles/e-commerce-el-presente-y-el-futuro-de-las-ventas-en-linea_1200x1200.png?v=1597172403" class="d-block w-100" style="width: 400px; height: 665px;" alt="...">
        
       </div>
       <div class="carousel-item">
-         <img src="https://wpmanageninja.com/wp-content/uploads/2019/01/21-FT.png" class="d-block w-100" style="width: 500px; height: 600px;" alt="...">
+         <img src="https://www.proinvestmexico.com/wp-content/uploads/2022/05/compras-1024x455.webp" class="d-block w-100" style="width: 500px; height: 665px;" alt="...">
       </div>
       <div class="carousel-item">
-        <img src="https://www.surveylegend.com/wordpress/wp-content/uploads/2020/03/Surveys-Advantages-vs-Disadvantages.png" class="d-block w-100" style="width: 500px; height: 600px;" alt="...">
+        <img src="https://i0.wp.com/tecnosivar.com/wp-content/uploads/2017/02/BlogPostGenPic-1.jpg?fit=1920%2C1080&ssl=1" class="d-block w-100" style="width: 500px; height: 665px;" alt="...">
       </div>
 
   </div>

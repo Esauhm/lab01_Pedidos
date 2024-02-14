@@ -95,30 +95,9 @@
 </style>
     
       <footer class="pie-pagina">
-        <div class="grupo-1">
-            <div class="box">
-                <a class="lfooter" >Encuestify</a>
-            </div>
-            <div class="box">
-                <h2>SOBRE NOSOTROS</h2>
-                <p>¿Quieres conocer más sobre Encuestify?</p>
-                <a class="nav-about" style="color: white" >Nosotros</a>
-
-            </div>
-            <div class="box">
-                <h2>SIGUENOS</h2>
-                <div class="red-social">
-                    <a href="" class="fa-brands fa-facebook"></a>
-                    <a href="" class="fa-brands fa-instagram"></a>
-                    <a href="" class="fab fa-youtube"></a>
-                    <a href="" class="fab fa-twitter"></a>
-
-
-                </div>
-            </div>
-        </div>
+        
         <div class="grupo-2">
-            <small>&copy; 2023 <b>Encuestify</b> - Todos los Derechos Reservados: DiegoHernandez_JuanGomez.</small>
+            <small>&copy; 2024 <b>Laboratorio #1</b> - Todos los Derechos Reservados: DiegoHernandez_JuanGomez.</small>
         </div>
     </footer>
 
