@@ -92,7 +92,7 @@
                 <!-- Gráfico de pastel -->
                 <div class="col-4 mx-auto">
                     <div class="text-center" style="width: 70%; height: 350px; text-align: center; margin-left: 100px;">
-                        <h3>Clientes con más pedidos</h3>
+                        <h3>Clientes</h3>
                         <canvas id="graficoPastel"></canvas>
                     </div>
                 </div>

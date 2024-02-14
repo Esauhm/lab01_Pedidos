@@ -174,8 +174,8 @@
                                 Graficos
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="graficoPedido">graf 1</a></li>
-                                <li><a class="dropdown-item" href="Grafico2">graf2</a></li>
+                                <li><a class="dropdown-item" href="graficoPedido">Meses con más pedidos</a></li>
+                                <li><a class="dropdown-item" href="Grafico2">Clientes con más pedidos</a></li>
                             </ul>
                         </li>
                     </ul>    
