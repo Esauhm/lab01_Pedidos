@@ -142,6 +142,7 @@ public class ClienteController extends HttpServlet {
         try {
             // Lógica para obtener los datos del producto desde la base de datos
             List<Clientes> listaEncuestas = clienteDAO.consultagraficos();
+             request.setAttribute("datos", listaEncuestas);
 
             if (listaEncuestas != null) {
                 System.out.println("LLegua hasta antes de enviar los datos a la vista ");
