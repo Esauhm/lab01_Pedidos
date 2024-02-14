@@ -203,6 +203,7 @@ public class ClienteController extends HttpServlet {
 
         if (exito) {
             List<Clientes> listaClientes = clienteDAO.consultaGeneral();
+             session.setAttribute("successMessage", "Cliente Creado con éxito");
             session.setAttribute("clientes", listaClientes);
             RequestDispatcher dispatcher = request.getRequestDispatcher("clientes/index.jsp");
             dispatcher.forward(request, response);

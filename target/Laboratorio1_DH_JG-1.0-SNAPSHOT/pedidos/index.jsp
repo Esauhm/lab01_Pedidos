@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<title>Lista de Clientes</title>
+<title>Lista de Pedidos</title>
 <%@ include file="/Layout/header.jsp" %>
 <style>
     /* Estilo para la tabla de productos */
@@ -78,22 +78,22 @@
                     <td>${pedido.getNombre_cliente(pedido.getID_Cliente())}</td>
                     <td>${pedido.getFecha()}</td>
                     <td>${pedido.getTotal()}</td>
-                    
+
                     <c:choose>
                         <c:when test="${pedido.getEstado() == 1}">
                             <td>Pendiente</td>
                         </c:when>
-                         <c:when test="${pedido.getEstado() == 2}">
-                           <td>En camino</td>
+                        <c:when test="${pedido.getEstado() == 2}">
+                            <td>En camino</td>
                         </c:when>
-                            <c:when test="${pedido.getEstado() == 3}">
-                           <td>Entregado</td>
+                        <c:when test="${pedido.getEstado() == 3}">
+                            <td>Entregado</td>
                         </c:when>
                         <c:otherwise>
-                             <td>N/A</td>
+                            <td>N/A</td>
                         </c:otherwise>
                     </c:choose>
-                 
+
                     <td>
                         <a href="editarPedido?id=${pedido.getID()}" class="btn btn-primary">
                             <i class="fas fa-pencil-alt"></i> Editar
@@ -107,5 +107,4 @@
         </tbody>
     </table>
 </div>
-
 <%@ include file="/Layout/footer.jsp" %>
