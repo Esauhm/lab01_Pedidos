@@ -22,6 +22,7 @@ public class Pedidos {
     private String Estado;
     private String mes;
     private int cantidad;
+    private String anio;
     
     public Pedidos(int ID, int ID_Cliente, Date fecha, double total, String estado) {
         this.ID = ID;
@@ -88,6 +89,14 @@ public class Pedidos {
 
     public String getEstado() {
         return Estado;
+    }
+
+    public String getAnio() {
+        return anio;
+    }
+
+    public void setAnio(String anio) {
+        this.anio = anio;
     }
 
     public void setEstado(String estado) {

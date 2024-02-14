@@ -151,10 +151,10 @@
         <!-- Navbar con paleta de colores suaves -->
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/Encuesta_lab01" style="margin-left: 10px;">
+                <a class="navbar-brand" href="/Laboratorio1_DH_JG" style="margin-left: 10px;">
                     <img src="https://previews.123rf.com/images/lineartestpilot/lineartestpilot1802/lineartestpilot180278994/95592089-gato-de-dibujos-animados-aburrido-tomando-encuesta-ilustraci%C3%B3n-vectorial.jpg" alt="Logo de la Tienda" class="logo">
                 </a>
-                <a class="lfooter2">Encuestify</a>
+                <a class="lfooter2">Laboratorio #1</a>
                 <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i> <!-- Icono de hamburguesa personalizado de FontAwesome -->
                 </button>
@@ -174,8 +174,8 @@
                                 Graficos
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">graf 1</a></li>
-                                <li><a class="dropdown-item" href="#">graf2</a></li>
+                                <li><a class="dropdown-item" href="graficoPedido">graf 1</a></li>
+                                <li><a class="dropdown-item" href="Grafico2">graf2</a></li>
                             </ul>
                         </li>
                     </ul>    

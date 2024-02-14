@@ -15,6 +15,15 @@ public class Clientes {
     private String Dirección;
     private String Teléfono;
     private String Email;
+    private int totalPedidos;
+
+    public int getTotalPedidos() {
+        return totalPedidos;
+    }
+
+    public void setTotalPedidos(int totalPedidos) {
+        this.totalPedidos = totalPedidos;
+    }
 
     public Clientes(int ID, String nombre, String dirección, String teléfono, String email) {
         this.ID = ID;
@@ -23,6 +32,7 @@ public class Clientes {
         Teléfono = teléfono;
         Email = email;
     }
+    
 
     public Clientes(String nombre, String dirección, String teléfono, String email) {
         Nombre = nombre;

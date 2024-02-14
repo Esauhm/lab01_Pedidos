@@ -32,6 +32,37 @@ public class ClienteDAO {
             throw new RuntimeException(e);
         }
     }
+    
+     public List<Clientes> consultagraficos() {
+         System.out.println("LLegua hasta la consultaaa");
+        List<Clientes> listaClientes = new ArrayList<>();
+        
+        // Agrega aquí la lógica para obtener los primeros 10 clientes con más pedidos.
+        String sql = "SELECT c.nombre AS NombreCliente, COUNT(p.id_cliente) AS TotalPedidos " +
+                     "FROM clientes c " +
+                     "JOIN pedidos p ON c.ID = p.ID_Cliente " +
+                     "GROUP BY c.ID " +
+                     "ORDER BY TotalPedidos DESC " +
+                     "LIMIT 10";
+
+        try (PreparedStatement ps = CN.getConnection().prepareStatement(sql);
+                ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Clientes cliente = new Clientes();
+                cliente.setNombre(rs.getString("NombreCliente"));
+                cliente.setTotalPedidos(rs.getInt("TotalPedidos"));
+                
+                 // Imprimir información en la consola
+            System.out.println("Nombre del Cliente: " + cliente.getNombre() + ", Total de Pedidos: " + cliente.getTotalPedidos());
+
+                listaClientes.add(cliente);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaClientes;
+    }
 
     public List<Clientes> consultaGeneral() {
 

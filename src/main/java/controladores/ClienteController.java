@@ -5,6 +5,7 @@
  */
 package controladores;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -25,7 +26,7 @@ import modelosDAO.ClienteDAO;
  *
  * @author Esau
  */
-@WebServlet(name = "ClienteController", urlPatterns = {"/ClienteController", "/clientesEliminar","/GuardarCliente", "/CargarClientes", "/clientesEditar", "/AgregarClientes", "/clienteEditado"})
+@WebServlet(name = "ClienteController", urlPatterns = {"/ClienteController", "/Grafico2", "/clientesEliminar","/GuardarCliente", "/CargarClientes", "/clientesEditar", "/AgregarClientes", "/clienteEditado"})
 public class ClienteController extends HttpServlet {
 
     private ClienteDAO clienteDAO;
@@ -96,7 +97,12 @@ public class ClienteController extends HttpServlet {
             case "/clientesEliminar":
                 //System.out.println("si llegua aqui veijoonnnnnn si");
                 clientesEliminar(request, response);
+                break;   
+            case "/Grafico2":
+                //System.out.println("si llegua aqui veijoonnnnnn si");
+                Grafico2(request, response);
                 break;    
+                
                 
                 
 
@@ -128,6 +134,41 @@ public class ClienteController extends HttpServlet {
                 break;
         }
     }
+    
+    private void Grafico2(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+         HttpSession session = request.getSession();
+
+        try {
+            // Lógica para obtener los datos del producto desde la base de datos
+            List<Clientes> listaEncuestas = clienteDAO.consultagraficos();
+
+            if (listaEncuestas != null) {
+                System.out.println("LLegua hasta antes de enviar los datos a la vista ");
+                // Crear una instancia de Gson
+                Gson gson = new Gson();
+
+                // Convertir la lista de encuestas a JSON
+                String datosJSON = gson.toJson(listaEncuestas);
+
+                // Pasar los datos JSON a la vista
+                request.setAttribute("datosJSON", datosJSON);
+                
+                
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("graficos/grafico2.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                session.setAttribute("errorMessage", "Llene antes su encuesta");
+                response.sendRedirect("clientes?error=true");
+            }
+
+        } catch (NumberFormatException e) {
+            // Manejo de error si el ID no es un número válido
+            session.setAttribute("errorMessage", "1Error al cargar editar producto");
+            response.sendRedirect("clientes?error=true");
+        }
+    }   
 
     private void mostrarDatosClientes(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

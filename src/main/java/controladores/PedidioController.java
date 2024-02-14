@@ -31,7 +31,7 @@ import modelosDAO.PedidoDAO;
  *
  * @author Esau
  */
-@WebServlet(name = "PedidioController", urlPatterns = {"/PedidioController", "/pedido","/crearPedidos","/editarPedido","/eliminarPedido","/graficoPedido"})
+@WebServlet(name = "PedidioController", urlPatterns = {"/PedidioController", "/pedido","/crearPedidos","/editarPedido","/eliminarPedido","/graficoPedido","/filtrar"})
 public class PedidioController extends HttpServlet {
     
     private PedidoDAO pedidoDao;
@@ -160,6 +160,8 @@ public class PedidioController extends HttpServlet {
            }
                 break;
         
+            case "/filtrar":
+                 graficoFiltro(request,response);
             default:
                 // Lógica para otras rutas si es necesario
                 break;
@@ -349,14 +351,10 @@ public class PedidioController extends HttpServlet {
    private void graficos(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
          HttpSession session = request.getSession();
-        //String anio = request.getParameter("anio");
-        
-        
-        
+         
         try {
             // Lógica para obtener los datos del producto desde la base de datos
             List<Pedidos> lstPedidos = pedidoDao.graficaPedidos("2024");
-
             if (lstPedidos != null) {
                 // Crear una instancia de Gson
                 Gson gson = new Gson();
@@ -366,7 +364,41 @@ public class PedidioController extends HttpServlet {
 
                 // Pasar los datos JSON a la vista
                 request.setAttribute("encuestasJSON", encuestasJSON);
+                  request.setAttribute("anioSelect", "2024");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("graficos/grafico1.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                session.setAttribute("errorMessage", "Llene antes su encuesta");
+                response.sendRedirect("clientes?error=true");
+            }
 
+        } catch (NumberFormatException e) {
+            // Manejo de error si el ID no es un número válido
+            session.setAttribute("errorMessage", "1Error al cargar editar producto");
+            response.sendRedirect("clientes?error=true");
+        }
+    }  
+   
+   private void graficoFiltro(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+         HttpSession session = request.getSession();
+         
+          String anio = request.getParameter("anio");
+        
+        try {
+            // Lógica para obtener los datos del producto desde la base de datos
+            List<Pedidos> lstPedidos = pedidoDao.graficaPedidos(anio);
+            if (lstPedidos != null) {
+                // Crear una instancia de Gson
+                Gson gson = new Gson();
+
+                // Convertir la lista de encuestas a JSON
+                String encuestasJSON = gson.toJson(lstPedidos);
+
+                // Pasar los datos JSON a la vista
+                request.setAttribute("encuestasJSON", encuestasJSON);
+                   request.setAttribute("anioSelect", anio);
+                  
                 RequestDispatcher dispatcher = request.getRequestDispatcher("graficos/grafico1.jsp");
                 dispatcher.forward(request, response);
             } else {
