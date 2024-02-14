@@ -38,8 +38,7 @@
                         <c:forEach var="year" begin="2019" end="2024">
                             <option value="${year}" ${anioSelect == year ? 'selected' : ''}>${year}</option>
                         </c:forEach>
-                    </select>
-                    <input value="${anioSelect}"></input>
+                    </select>              
                 </div>
 
                 <div class="col">
