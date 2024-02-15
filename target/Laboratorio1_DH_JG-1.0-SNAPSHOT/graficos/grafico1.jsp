@@ -81,7 +81,7 @@
                 <div class="card-body">
                     <!-- Añadimos el filtro para seleccionar años -->
                     <form action="filtrar" class="row" method="post">
-                        <div class="form-group col">
+                        <div class="form-group col mb-5">
                             <label for="anio">Seleccionar año:</label>
                             <select class="form-control" id="anio" name="anio">
                                 <c:forEach var="year" begin="2019" end="2024">

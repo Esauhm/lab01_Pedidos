@@ -82,7 +82,7 @@
             </div>
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
-                <input type="text" class="form-control" id="telefono" name="telefono" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
+                <input type="text" class="form-control" id="telefono" name="telefono" required placeholder="0000-0000" pattern="[0-9]{4}-[0-9]{4}">
             </div>
             <div class="form-group">
                 <label for="email">Correo Electrónico:</label>
