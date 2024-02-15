@@ -28,7 +28,14 @@ public class cn {
         }
     }
 
+     public void cerrarConexion() throws SQLException {
+        if (con != null && !con.isClosed()) {
+            con.close();
+            System.out.println("Conexión cerrada con éxito.");
+        }
+    }
     public Connection getConnection() {
+        
         return con;
     }
 

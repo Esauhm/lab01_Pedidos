@@ -34,11 +34,7 @@ public class ClienteController extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        try {
-            clienteDAO = new ClienteDAO();
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        clienteDAO = new ClienteDAO();
     }
 
     /**

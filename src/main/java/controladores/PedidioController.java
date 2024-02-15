@@ -67,12 +67,8 @@ public class PedidioController extends HttpServlet {
         @Override
     public void init() throws ServletException {
         super.init();
-        try {
-            pedidoDao = new PedidoDAO();
-            clienteDao = new ClienteDAO();
-        } catch (SQLException ex) {
-            Logger.getLogger(ex.getMessage());
-        }
+        pedidoDao = new PedidoDAO();
+        clienteDao = new ClienteDAO();
     }
     
 
